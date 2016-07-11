@@ -18,13 +18,9 @@ SOURCES += \
     src/harbour-sailwalpha.cpp
 
 OTHER_FILES += \
-    qml/cover/CoverPage.qml \
-    qml/pages/FirstPage.qml \
-    qml/pages/SecondPage.qml \
     ../rpm/harbour-sailwalpha.spec \
     ../rpm/harbour-sailwalpha.changes \
-    ../rpm/harbour-sailwalpha.yaml \
-    translations/*.ts
+    ../rpm/harbour-sailwalpha.yaml
 
 SAILFISHAPP_ICONS = 86x86 108x108 128x128 256x256
 
@@ -39,6 +35,9 @@ CONFIG += sailfishapp_i18n
 TRANSLATIONS += translations/harbour-sailwalpha-fi.ts
 
 DISTFILES += \
-    harbour-sailwalpha.desktop
-    qml/harbour-sailwalpha.qml
+    harbour-sailwalpha.desktop \
+    qml/* \
+    qml/cover/* \
+    qml/pages/* \
+    translations/*.ts
 
