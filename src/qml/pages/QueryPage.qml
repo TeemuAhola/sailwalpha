@@ -53,6 +53,11 @@ Page {
                 width: parent.width
                 color: Theme.secondaryHighlightColor
                 placeholderText: qsTr("Enter what you want to know about")
+
+                EnterKey.onClicked: {
+                    var result = wap.makeQuery(queryField.text);
+                    console.log(result)
+                }
             }
         }
     }

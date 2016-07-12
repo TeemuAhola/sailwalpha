@@ -39,5 +39,12 @@ DISTFILES += \
     qml/* \
     qml/cover/* \
     qml/pages/* \
-    translations/*.ts
+    python/* \
+    translations/*.ts \
+    qml/WapAdapter.qml \
+    qml/pages/QueryResultPage.qml
 
+python.files = python
+python.path = /usr/share/$${TARGET}
+
+INSTALLS += python

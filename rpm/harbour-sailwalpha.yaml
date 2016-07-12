@@ -38,6 +38,7 @@ Requires:
 Files:
   - '%{_bindir}'
   - '%{_datadir}/%{name}'
+  - '%{_datadir}/%{name}/python'
   - '%{_datadir}/applications/%{name}.desktop'
   - '%{_datadir}/icons/hicolor/*/apps/%{name}.png'
 

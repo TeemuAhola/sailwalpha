@@ -9,7 +9,7 @@
     </message>
 </context>
 <context>
-    <name>MainPage</name>
+    <name>QueryPage</name>
     <message>
         <source>Query</source>
         <translation type="unfinished"></translation>

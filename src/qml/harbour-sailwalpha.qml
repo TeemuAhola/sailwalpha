@@ -5,7 +5,9 @@ import "cover"
 
 ApplicationWindow
 {
-    initialPage: Component { MainPage { } }
+    property var wap: WapAdapter { }
+
+    initialPage: Component { QueryPage { } }
     cover: Component { CoverPage { } }
     allowedOrientations: Orientation.All
     _defaultPageOrientations: Orientation.All
