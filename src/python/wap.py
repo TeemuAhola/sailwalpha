@@ -66,7 +66,7 @@ class WolframAlphaQuery:
  
   def ToURL(self):
     self.Query = 'input=' + urllib.parse.quote(self.Query)
-    self.Query = self.Query + '&APP_ID=' + urllib.parse.quote(self.appid)
+    self.Query = self.Query + '&appid=' + urllib.parse.quote(self.appid)
     if self.ScanTimeout:
       self.Query = self.Query + '&scantimeout=' + urllib.parse.quote(self.ScanTimeout)
     if self.PodTimeout:
@@ -101,7 +101,6 @@ class WolframAlphaQueryResult:
 
   def __init__(self, result=''):
     self.XmlResult = result
-    print("result", result)
     self.dom = minidom.parseString(result)
     self.tree = runtree(self.dom.documentElement)
 

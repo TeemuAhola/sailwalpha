@@ -55,8 +55,12 @@ Page {
                 placeholderText: qsTr("Enter what you want to know about")
 
                 EnterKey.onClicked: {
-                    var result = wap.makeQuery(queryField.text);
-                    console.log(result)
+                    var query = wap.makeQuery(queryField.text);
+                    var pods = wap.getPods(query);
+                    console.log("pods", pods);
+
+                    for (var i = 0; i < pods.length; i++)
+                        console.log("pod title", wap.getPodData(pods[i])['title'])
                 }
             }
         }

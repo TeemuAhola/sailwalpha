@@ -23,6 +23,22 @@ Python {
         return py.call_sync('WapAdapter.makeQuery', [queryText]);
     }
 
+    function getPods(query) {
+        return py.call_sync('WapAdapter.getPods', [query]);
+    }
+
+    function getPodData(pod) {
+        return py.call_sync('WapAdapter.getPodData', [pod]);
+    }
+
+    function getSubPods(pod) {
+        return py.call_sync('WapAdapter.getSubPods', [pod]);
+    }
+
+    function getSubPodData(subpod) {
+        return py.call_sync('WapAdapter.getSubPodData', [subpod]);
+    }
+
 
     Component.onCompleted: {
         if (!py.ready) {
