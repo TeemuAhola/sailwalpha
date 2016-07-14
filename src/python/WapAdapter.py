@@ -14,7 +14,9 @@ engine = wap.WolframAlphaEngine(APP_ID, SERVER)
 
 def makeQuery(text):
     queryStr = engine.CreateQuery(text)
+    print(queryStr)
     queryResult = engine.PerformQuery(queryStr)
+    print(queryResult)
     return wap.WolframAlphaQueryResult(queryResult)
 
 def isQueryOk(query):
@@ -28,16 +30,19 @@ def getPods(result):
     return pods
 
 def getPodData(pod):
-    return {'title':pod.Title()}
+    print("from pythoin", pod)
+    return {'title':pod.Title()[0]}
 
 def getSubPods(pod):
     spods = []
     for subpod in pod.Subpods():
+        print(subpod)
         spods.append(wap.Subpod(subpod))
 
     return spods
 
 def getSubPodData(subpod):
-    return {'title':subpod.Title(),
-            'plaintext':subpod.Plaintext(),
-            'img':subpod.Img()}
+    return {'title':subpod.Title()[0],
+            'plaintext':subpod.Plaintext()[0] if subpod.Plaintext() and not isinstance(subpod.Plaintext()[0], list) else '',
+            'img':dict(subpod.Img()[0]) if subpod.Img() else '',
+            'mathml':subpod.MathML()[0] if subpod.MathML() else ''}

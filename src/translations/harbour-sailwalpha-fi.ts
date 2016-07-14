@@ -9,6 +9,17 @@
     </message>
 </context>
 <context>
+    <name>PodView</name>
+    <message>
+        <source>title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>plaintext</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>QueryPage</name>
     <message>
         <source>Query</source>

@@ -63,6 +63,7 @@ class WolframAlphaQuery:
     self.PodTimeout = ''
     self.FormatTimeout = ''
     self.Async = ''
+    self.Format = ''
  
   def ToURL(self):
     self.Query = 'input=' + urllib.parse.quote(self.Query)
@@ -75,6 +76,8 @@ class WolframAlphaQuery:
       self.Query = self.Query + '&formattimeout=' + urllib.parse.quote(self.FormatTimeout)
     if self.Async:
       self.Query = self.Query + '&async=' + urllib.parse.quote(self.Async)
+    if self.Format:
+      self.Query = self.Query + '&format=' + urllib.parse.quote(self.Format)
     return
 
   def AddPodTitle(self, podtitle=''):
@@ -218,6 +221,9 @@ class Subpod:
 
   def Img(self):
     return scanbranches(self.subpod, 'img')
+
+  def MathML(self):
+    return scanbranches(self.subpod, 'mathml')
 
 class Assumption:
 
