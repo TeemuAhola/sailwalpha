@@ -21,9 +21,9 @@ class Test(unittest.TestCase):
     def testName(self):
         query = WapAdapter.makeQuery("Pi")
         for p in WapAdapter.getPods(query):
-            print("pod:", WapAdapter.getPodData(p)['title'])
-            for sp in WapAdapter.getSubPods(p):
-                print("subpod:", WapAdapter.getSubPodData(sp))
+            print("pod:", p)
+            for sp in p['subpods']:
+                print("subpod:", str(sp))
 
 
 if __name__ == "__main__":

@@ -9,17 +9,6 @@
     </message>
 </context>
 <context>
-    <name>PodView</name>
-    <message>
-        <source>title</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>plaintext</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>QueryPage</name>
     <message>
         <source>Query</source>
@@ -27,6 +16,13 @@
     </message>
     <message>
         <source>Enter what you want to know about</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>QueryResultPage</name>
+    <message>
+        <source>Query results</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

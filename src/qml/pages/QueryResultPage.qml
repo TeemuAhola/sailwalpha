@@ -9,31 +9,25 @@ Page {
     Component.onCompleted: {
         var query = wap.makeQuery(queryText);
         var pods = wap.getPods(query);
-        podRepeater.model = pods;
+
+        for (var i=0; i<pods.length; i++)
+            resultModel.append(pods[i]);
     }
 
-    SilicaFlickable {
+    SilicaListView {
+        id: podView
         anchors.fill: parent
-        contentHeight: column.height + Theme.paddingLarge
-        contentWidth: parent.width
+        clip: true
 
-        VerticalScrollDecorator {}
+        model: ListModel { id: resultModel }
 
-        Column {
-            id: column
-            width: parent.width
-            spacing: Theme.paddingMedium
+        header: PageHeader { title: qsTr("Query results") }
 
-            PageHeader { title: "Query results" }
+        VerticalScrollDecorator { flickable: podView }
 
-            Repeater {
-                id: podRepeater
-                delegate: PodView {
-                    width: parent.width
-                    pod: model.modelData
-                }
-            }
-
+        delegate: PodView {
+            width: ListView.view.width
+            pod: model
         }
     }
 }
