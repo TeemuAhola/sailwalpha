@@ -19,11 +19,14 @@ class Test(unittest.TestCase):
 
 
     def testName(self):
-        query = WapAdapter.makeQuery("Pi")
-        for p in WapAdapter.getPods(query):
-            print("pod:", p)
-            for sp in p['subpods']:
-                print("subpod:", str(sp))
+        query = WapAdapter.Query("Pi")
+
+        for p in query.getPods():
+            print(p)
+            
+        for a in query.getAssumptions():
+            print(a)
+
 
 
 if __name__ == "__main__":
