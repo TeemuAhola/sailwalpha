@@ -70,6 +70,7 @@ class WolframAlphaQuery:
     self.Format = ''
     self.Width = ''
     self.MaxWidth = ''
+    self.PlotWidth = ''
  
   def ToURL(self):
     self.Query = 'input=' + urllib.parse.quote(self.Query)
@@ -88,6 +89,8 @@ class WolframAlphaQuery:
       self.Query = self.Query + '&width=' + urllib.parse.quote(str(self.Width))
     if self.MaxWidth:
       self.Query = self.Query + '&maxwidth=' + urllib.parse.quote(str(self.MaxWidth))
+    if self.PlotWidth:
+      self.Query = self.Query + '&plotwidth=' + urllib.parse.quote(str(self.PlotWidth))
     return
 
   def AddPodTitle(self, podtitle=''):

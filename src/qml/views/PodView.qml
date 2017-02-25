@@ -45,6 +45,8 @@ ListItem {
                     id: subpodItem
                     property bool isVisible: true
                     contentHeight: plainText.height + image.height
+                    contentWidth: subpodView.width
+
                     Label {
                         id: plainText
                         text: "Plain text: " + wap.getPlainText(model.modelData)
@@ -53,6 +55,9 @@ ListItem {
                         id: image
                         anchors.top: plainText.bottom
                         asynchronous: true
+                        cache: true
+                        width: subpodView.width
+                        height: 100
                         fillMode: Image.PreserveAspectFit
                         source: wap.getImgSrc(model.modelData)
                     }

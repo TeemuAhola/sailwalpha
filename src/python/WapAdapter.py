@@ -64,6 +64,12 @@ class Image(object):
     def __str__(self):
         return "img %s:%s:%s:%s:%s;" % (self.alt, self.src, self.title, self.width, self.height)
 
+class Info(object):
+    
+    def __init__(self, info):
+        pass
+
+
 class SubPod(object):
     
     def __init__(self, subpod):
@@ -160,8 +166,9 @@ class Assumptions(object):
 
 class Query(object):
     
-    WIDTH = 600
-    MAX_WIDTH = 700
+    WIDTH = 100
+    MAX_WIDTH = 720
+    PLOT_WIDTH = MAX_WIDTH
     
     @classmethod
     def SimpleQuery(cls, query):
@@ -179,6 +186,7 @@ class Query(object):
         engine = wap.WolframAlphaEngine(APP_ID, SERVER)
         engine.Width = Query.WIDTH
         engine.MaxWidth = Query.MAX_WIDTH
+        engine.PlotWidth = Query.PLOT_WIDTH
         queryObj = engine.CreateQuery(query)
         if assumption: queryObj.AddAssumption(assumption.input)
         if state: queryObj.AddPodState(state)
@@ -198,20 +206,34 @@ class Query(object):
         return map(Assumptions, self.__result.Assumptions())
 
 
+def handle_exception(func):
+    from functools import wraps
+    @wraps(func)
+    def exception_handler(*args, **kwargs):
+        try:
+            return func(*args, **kwargs)
+        except Exception as e:
+            error("Exception:", str(e))
+            raise Exception() from e
+            
+    return exception_handler
+
+@handle_exception
 def makeSimpleQuery(query):
     return Query.SimpleQuery(query)
 
+@handle_exception
 def saveQuery(query, path):
-    
     with open(path, "wb") as fp:
         pickle.dump(query, fp)
-        
+
+@handle_exception
 def loadQuery(path):
     with open(path, "rb") as fp:
         return pickle.load(fp)
 
+@handle_exception
 def getAttribute(obj, *args):
     for name in args:
         obj = getattr(obj, name)
-    
     return obj
