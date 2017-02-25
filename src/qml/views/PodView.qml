@@ -10,17 +10,9 @@ ListItem {
     contentHeight: subpodView.height
     clip: true
 
-    ListModel {
-        id: subpodModel
-    }
-
     Component.onCompleted: {
-        var subpods = pod.subpods;
-
-        for (var i = 0; i < subpods.count; i++) {
-            var s = subpods.get(i);
-            subpodModel.append(s);
-        }
+        var subpods = wap.getSubpods(pod);
+        subpodRepeater.model = subpods;
     }
 
     onClicked: {
@@ -43,12 +35,11 @@ ListItem {
 
             SectionHeader {
                 id: title
-                text: pod.title;
+                text: wap.getTitle(pod);
             }
 
             Repeater {
                 id: subpodRepeater
-                model: subpodModel
 
                 delegate: ListItem {
                     id: subpodItem
@@ -56,14 +47,14 @@ ListItem {
                     contentHeight: plainText.height + image.height
                     Label {
                         id: plainText
-                        text: "Plain text: " + model.plaintext
+                        text: "Plain text: " + wap.getPlainText(model.modelData)
                     }
                     Image {
                         id: image
                         anchors.top: plainText.bottom
                         asynchronous: true
                         fillMode: Image.PreserveAspectFit
-                        source: model.img['src']
+                        source: wap.getImgSrc(model.modelData)
                     }
 
                     states: [

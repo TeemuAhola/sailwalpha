@@ -19,14 +19,22 @@ class Test(unittest.TestCase):
 
 
     def testName(self):
-        query = WapAdapter.Query("Pi")
+        query = WapAdapter.makeSimpleQuery("Pi")
 
-        for p in query.getPods():
-            print(p)
-            
-        for a in query.getAssumptions():
+        self.assertTrue(query.isSuccess)
+
+        for p in query.pods:
+            for sp in p.subpods:
+                print(p.title, " -- ", sp)
+   
+        for a in query.assumptions:
             print(a)
-
+            
+        WapAdapter.saveQuery(query, "/tmp/f.bin")
+        
+        query2 = WapAdapter.loadQuery("/tmp/f.bin")
+        
+        self.assertTrue(query2.isSuccess)        
 
 
 if __name__ == "__main__":

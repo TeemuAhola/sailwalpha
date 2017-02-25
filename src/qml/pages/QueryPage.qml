@@ -9,6 +9,17 @@ Page {
         anchors.fill: parent
 
         contentHeight: column.height
+
+        PullDownMenu {
+            MenuItem {
+                text: "Load query"
+                onClicked: {
+                    var query = wap.loadQuery("/tmp/query.bin");
+                    pageStack.push(Qt.resolvedUrl("QueryResultPage.qml"), {'query': query})
+                }
+            }
+        }
+
         Column {
             id: column
 
@@ -26,7 +37,9 @@ Page {
                 EnterKey.enabled: text.length > 0
 
                 EnterKey.onClicked: {
-                    pageStack.push(Qt.resolvedUrl("QueryResultPage.qml"), {'queryText': queryField.text})
+                    var query = wap.makeQuery(text);
+                    wap.saveQuery(query, "/tmp/query.bin")
+                    pageStack.push(Qt.resolvedUrl("QueryResultPage.qml"), {'query': query})
                 }
             }
         }

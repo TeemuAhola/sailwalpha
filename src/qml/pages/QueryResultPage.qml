@@ -3,15 +3,10 @@ import Sailfish.Silica 1.0
 import "../views"
 
 Page {
-
-    property string queryText
+    property var query
 
     Component.onCompleted: {
-        var query = wap.makeQuery(queryText);
-        var pods = wap.getPods(query);
-
-        for (var i=0; i<pods.length; i++)
-            resultModel.append(pods[i]);
+        podView.model = wap.getPods(query);
     }
 
     SilicaListView {
@@ -19,15 +14,16 @@ Page {
         anchors.fill: parent
         clip: true
 
-        model: ListModel { id: resultModel }
-
-        header: PageHeader { title: qsTr("Query results") }
+        header: PageHeader {
+            title: qsTr("Query results")
+            extraContent.children: [ Label { text: "extraa" } ]
+        }
 
         VerticalScrollDecorator { flickable: podView }
 
         delegate: PodView {
             width: ListView.view.width
-            pod: model
+            pod: model.modelData
         }
     }
 }

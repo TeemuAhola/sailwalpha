@@ -32,6 +32,8 @@ class WolframAlphaEngine:
     self.PodTimeout = ''
     self.FormatTimeout = ''
     self.Async = ''
+    self.Width = ''
+    self.MaxWidth = ''
 
   def CreateQuery(self, query=''):
     waeq = WolframAlphaQuery(query)
@@ -40,18 +42,20 @@ class WolframAlphaEngine:
     waeq.PodTimeout = self.PodTimeout
     waeq.FormatTimeout = self.FormatTimeout
     waeq.Async = self.Async
+    waeq.Width = self.Width
+    waeq.MaxWidth = self.MaxWidth
     waeq.ToURL()
-    return waeq.Query
+    return waeq
 
-  def PerformQuery(self, query=''):
+  def PerformQuery(self, query=None):
     try:
       request = urllib.request.Request(self.server, headers = {
         "Content-Type" : "application/x-www-form-urlencoded; charset=UTF-8"
         })
-      result = urllib.request.urlopen(request, bytes(query, 'utf-8'))
+      result = urllib.request.urlopen(request, bytes(query.Query, 'utf-8'))
       result = result.read()
     except:
-      result = '<error>urllib2.urlopen ' + self.server + ' ' + query + '</error>'
+      result = '<error>urllib2.urlopen ' + self.server + ' ' + query.Query + '</error>'
     return result
 
 class WolframAlphaQuery:
@@ -64,6 +68,8 @@ class WolframAlphaQuery:
     self.FormatTimeout = ''
     self.Async = ''
     self.Format = ''
+    self.Width = ''
+    self.MaxWidth = ''
  
   def ToURL(self):
     self.Query = 'input=' + urllib.parse.quote(self.Query)
@@ -78,6 +84,10 @@ class WolframAlphaQuery:
       self.Query = self.Query + '&async=' + urllib.parse.quote(self.Async)
     if self.Format:
       self.Query = self.Query + '&format=' + urllib.parse.quote(self.Format)
+    if self.Width:
+      self.Query = self.Query + '&width=' + urllib.parse.quote(str(self.Width))
+    if self.MaxWidth:
+      self.Query = self.Query + '&maxwidth=' + urllib.parse.quote(str(self.MaxWidth))
     return
 
   def AddPodTitle(self, podtitle=''):

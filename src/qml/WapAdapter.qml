@@ -20,11 +20,41 @@ Python {
     }
 
     function makeQuery(queryText) {
-        return py.call_sync('WapAdapter.makeQuery', [queryText]);
+        return py.call_sync('WapAdapter.makeSimpleQuery', [queryText]);
+    }
+
+    function saveQuery(query, path) {
+        return py.call_sync('WapAdapter.saveQuery', [query, path]);
+    }
+
+    function loadQuery(path) {
+        return py.call_sync('WapAdapter.loadQuery', [path]);
+    }
+
+    function getAttribute(obj) {
+        var argArray = Array.prototype.slice.call(arguments); // includes obj
+        return py.call_sync('WapAdapter.getAttribute', argArray);
     }
 
     function getPods(query) {
-        return py.call_sync('WapAdapter.getPods', [query]);
+        return getAttribute(query, 'pods');
+    }
+
+    function getSubpods(pod) {
+        return getAttribute(pod, 'subpods');
+    }
+
+    // get title of pod or subpod
+    function getTitle(pod) {
+        return getAttribute(pod, 'title');
+    }
+
+    function getPlainText(subpod) {
+        return getAttribute(subpod, 'plaintext');
+    }
+
+    function getImgSrc(subpod) {
+        return getAttribute(subpod, 'img', 'src'); // subpod.img.src
     }
 
     Component.onCompleted: {

@@ -43,7 +43,8 @@ DISTFILES += \
     translations/*.ts \
     qml/WapAdapter.qml \
     qml/pages/QueryResultPage.qml \
-    qml/views/PodView.qml
+    qml/views/PodView.qml \
+    qml/views/AssumptionsView.qml
 
 python.files = python
 python.path = /usr/share/$${TARGET}
