@@ -27,11 +27,11 @@ class Test(unittest.TestCase):
         
         self.assertTrue(query2.isSuccess)        
 
-        for p in query2.pods:
+        for p in query.pods:
             for sp in p.subpods:
                 print(p.title, " -- ", sp)
    
-        for a in query2.assumptions:
+        for a in query.assumptions:
             print(a)
 
 

@@ -103,7 +103,7 @@ class Pod(object):
     def __init__(self, pod):
         p = wap.Pod(pod)
         self.__title = p.Title()[0]
-        self.__subpods = map(SubPod, p.Subpods())
+        self.__subpods = list(map(SubPod, p.Subpods()))
 
     @property
     def title(self):
@@ -143,7 +143,7 @@ class Assumptions(object):
         self.__type = a.Type()
         self.__count = a.Count()
         self.__word = a.Word()
-        self.__values = map(AssumptionValue, a.Value())
+        self.__values = list(map(AssumptionValue, a.Value()))
     
     @property
     def type(self):
@@ -199,11 +199,11 @@ class Query(object):
     
     @property
     def pods(self):
-        return map(Pod, self.__result.Pods())
+        return list(map(Pod, self.__result.Pods()))
     
     @property
     def assumptions(self):
-        return map(Assumptions, self.__result.Assumptions())
+        return list(map(Assumptions, self.__result.Assumptions()))
 
 
 def handle_exception(func):

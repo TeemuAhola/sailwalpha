@@ -7,7 +7,7 @@ ListItem {
 
     id: podView
 
-    contentHeight: subpodView.height
+    contentHeight: subpodColumn.height
     clip: true
 
     Component.onCompleted: {
@@ -29,7 +29,7 @@ ListItem {
                           Theme.highlightBackgroundOpacity)
 
         Column {
-            id: subpodView
+            id: subpodColumn
             anchors.left: parent.left;
             anchors.right: parent.right;
 
@@ -41,40 +41,8 @@ ListItem {
             Repeater {
                 id: subpodRepeater
 
-                delegate: ListItem {
-                    id: subpodItem
-                    property bool isVisible: true
-                    contentHeight: plainText.height + image.height
-                    contentWidth: subpodView.width
-
-                    Label {
-                        id: plainText
-                        text: "Plain text: " + wap.getPlainText(model.modelData)
-                    }
-                    Image {
-                        id: image
-                        anchors.top: plainText.bottom
-                        asynchronous: true
-                        cache: true
-                        width: subpodView.width
-                        height: 100
-                        fillMode: Image.PreserveAspectFit
-                        source: wap.getImgSrc(model.modelData)
-                    }
-
-                    states: [
-                        State {
-                            name: "closed"; when: !isVisible
-                            PropertyChanges { target: subpodItem; opacity: 0; contentHeight: 0 }
-                        }
-                        ,State {
-                            name: "opened"; when: isVisible
-                            PropertyChanges { target: subpodItem; opacity: 1.0; contentHeight: plainText.height + image.height}
-                        }
-                    ]
-                    transitions: Transition {
-                        PropertyAnimation { properties: "opacity,contentHeight"; easing.overshoot: 1.2; duration: 400; easing.type: Easing.OutBack }
-                    }
+                delegate: SubPodView {
+                    subpod: model.modelData
                 }
             }
         }

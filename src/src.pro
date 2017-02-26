@@ -44,7 +44,8 @@ DISTFILES += \
     qml/WapAdapter.qml \
     qml/pages/QueryResultPage.qml \
     qml/views/PodView.qml \
-    qml/views/AssumptionsView.qml
+    qml/views/AssumptionsView.qml \
+    qml/views/SubPodView.qml
 
 python.files = python
 python.path = /usr/share/$${TARGET}
