@@ -166,9 +166,9 @@ class Assumptions(object):
 
 class Query(object):
     
-    WIDTH = 100
-    MAX_WIDTH = 720
-    PLOT_WIDTH = MAX_WIDTH
+    WIDTH = 720
+    PLOT_WIDTH = WIDTH
+    MAGNIFICATION = 2.5
     
     @classmethod
     def SimpleQuery(cls, query):
@@ -182,11 +182,11 @@ class Query(object):
     def StateQuery(cls, query, state):
         return cls(query, state=state)
     
-    def __init__(self, query, assumption=None, state=None):
+    def __init__(self, query, assumption=None, state=None, width=WIDTH, plotwidth=PLOT_WIDTH, magnification=MAGNIFICATION):
         engine = wap.WolframAlphaEngine(APP_ID, SERVER)
-        engine.Width = Query.WIDTH
-        engine.MaxWidth = Query.MAX_WIDTH
-        engine.PlotWidth = Query.PLOT_WIDTH
+        engine.Width = width
+        engine.PlotWidth = plotwidth
+        engine.Mag = magnification
         queryObj = engine.CreateQuery(query)
         if assumption: queryObj.AddAssumption(assumption.input)
         if state: queryObj.AddPodState(state)

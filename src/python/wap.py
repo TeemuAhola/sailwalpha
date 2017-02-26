@@ -34,6 +34,7 @@ class WolframAlphaEngine:
     self.Async = ''
     self.Width = ''
     self.MaxWidth = ''
+    self.Mag = ''
 
   def CreateQuery(self, query=''):
     waeq = WolframAlphaQuery(query)
@@ -44,6 +45,7 @@ class WolframAlphaEngine:
     waeq.Async = self.Async
     waeq.Width = self.Width
     waeq.MaxWidth = self.MaxWidth
+    waeq.Mag = self.Mag
     waeq.ToURL()
     return waeq
 
@@ -71,6 +73,7 @@ class WolframAlphaQuery:
     self.Width = ''
     self.MaxWidth = ''
     self.PlotWidth = ''
+    self.Mag = ''
  
   def ToURL(self):
     self.Query = 'input=' + urllib.parse.quote(self.Query)
@@ -91,6 +94,8 @@ class WolframAlphaQuery:
       self.Query = self.Query + '&maxwidth=' + urllib.parse.quote(str(self.MaxWidth))
     if self.PlotWidth:
       self.Query = self.Query + '&plotwidth=' + urllib.parse.quote(str(self.PlotWidth))
+    if self.Mag:
+      self.Query = self.Query + '&mag=' + urllib.parse.quote(str(self.Mag))
     return
 
   def AddPodTitle(self, podtitle=''):

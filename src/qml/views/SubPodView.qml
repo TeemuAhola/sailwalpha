@@ -18,9 +18,6 @@ ListItem {
         anchors.top: plainText.bottom
         asynchronous: true
         cache: true
-        width: parent.width
-        height: 100
-        fillMode: Image.PreserveAspectFit
         verticalAlignment:  Image.AlignLeft
         source: wap.getImgSrc(subpod)
 
