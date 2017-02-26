@@ -167,6 +167,7 @@ class Assumptions(object):
 class Query(object):
     
     WIDTH = 720
+    MAX_WIDTH = WIDTH
     PLOT_WIDTH = WIDTH
     MAGNIFICATION = 2.5
     
@@ -182,9 +183,10 @@ class Query(object):
     def StateQuery(cls, query, state):
         return cls(query, state=state)
     
-    def __init__(self, query, assumption=None, state=None, width=WIDTH, plotwidth=PLOT_WIDTH, magnification=MAGNIFICATION):
+    def __init__(self, query, assumption=None, state=None, width=WIDTH, maxwidth=MAX_WIDTH, plotwidth=PLOT_WIDTH, magnification=MAGNIFICATION):
         engine = wap.WolframAlphaEngine(APP_ID, SERVER)
         engine.Width = width
+        engine.MaxWidth = maxwidth
         engine.PlotWidth = plotwidth
         engine.Mag = magnification
         queryObj = engine.CreateQuery(query)
@@ -237,3 +239,9 @@ def getAttribute(obj, *args):
     for name in args:
         obj = getattr(obj, name)
     return obj
+
+def setSizeParameters(width, maxwidth, plotwidth, magnification):
+    Query.WIDTH = width
+    
+    Query.PLOT_WIDTH = plotwidth
+    Query.MAGNIFICATION = magnification

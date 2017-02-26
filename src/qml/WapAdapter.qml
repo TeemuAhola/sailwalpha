@@ -1,4 +1,5 @@
 import QtQuick 2.0
+import Sailfish.Silica 1.0
 import io.thp.pyotherside 1.3
 
 Python {
@@ -17,6 +18,10 @@ Python {
         setHandler('log-e', function (text) {
                     console.error(text);
                 });
+    }
+
+    function setSizeParameters(width, maxwidth, plotwidth, magnification) {
+        return py.call_sync('WapAdapter.setSizeParameters', [width, maxwidth, plotwidth, magnification]);
     }
 
     function makeQuery(queryText) {
@@ -65,6 +70,10 @@ Python {
             __setHandlers();
             addImportPath(Qt.resolvedUrl("../python/"));
             importModule_sync('WapAdapter');
+            setSizeParameters(Screen.width - Theme.horizontalPageMargin*2,
+                              Screen.width,
+                              Screen.width - Theme.horizontalPageMargin*2,
+                              2.5);
             py.ready = true;
         }
     }

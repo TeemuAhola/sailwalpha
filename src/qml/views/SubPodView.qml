@@ -6,19 +6,34 @@ ListItem {
 
     property var subpod
     property bool isVisible: true
+
     contentHeight: plainText.height + image.height
-    contentWidth: parent.width
+    contentWidth: width
 
     Label {
         id: plainText
+        anchors {
+            top: parent.top
+            left: parent.left
+            right: parent.right
+            leftMargin: Theme.horizontalPageMargin
+            rightMargin: Theme.horizontalPageMargin
+        }
         text: "Plain text: " + wap.getPlainText(subpod)
     }
     Image {
         id: image
-        anchors.top: plainText.bottom
+        anchors {
+            top: plainText.bottom
+            left: parent.left
+            right: parent.right
+            leftMargin: Theme.horizontalPageMargin
+            rightMargin: Theme.horizontalPageMargin
+        }
         asynchronous: true
         cache: true
-        verticalAlignment:  Image.AlignLeft
+        fillMode: Image.Pad
+        horizontalAlignment:  Image.AlignLeft
         source: wap.getImgSrc(subpod)
 
         BusyIndicator {
