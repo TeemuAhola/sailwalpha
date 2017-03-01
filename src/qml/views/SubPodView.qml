@@ -7,8 +7,9 @@ ListItem {
     property var subpod
     property bool isVisible: true
 
-    contentHeight: plainText.height + image.height
+    contentHeight: plainText.height + (image.status === Image.Ready ? image.height : loadingIndicator.height)
     contentWidth: width
+    height: contentHeight + Theme.paddingSmall
 
     Label {
         id: plainText
@@ -27,8 +28,6 @@ ListItem {
             top: plainText.bottom
             left: parent.left
             right: parent.right
-            leftMargin: Theme.horizontalPageMargin
-            rightMargin: Theme.horizontalPageMargin
         }
         asynchronous: true
         cache: true
@@ -36,7 +35,21 @@ ListItem {
         horizontalAlignment:  Image.AlignLeft
         source: wap.getImgSrc(subpod)
 
+        anchors {
+            rightMargin: Theme.horizontalPageMargin
+            leftMargin: Theme.horizontalPageMargin
+        }
+
+
+        sourceSize.width: {
+            var maxImageWidth = parent.width
+            var leftMargin = Theme.horizontalPageMargin
+            var rightMargin = Theme.horizontalPageMargin
+            return maxImageWidth - leftMargin - rightMargin
+        }
+
         BusyIndicator {
+            id: loadingIndicator
             size: BusyIndicatorSize.Small
             anchors.centerIn: image
             running: image.status != Image.Ready

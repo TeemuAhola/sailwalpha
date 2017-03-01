@@ -5,6 +5,8 @@ import "../views"
 Page {
     property var query
 
+    allowedOrientations: Orientation.All
+
     Component.onCompleted: {
         podView.model = wap.getPods(query);
     }
@@ -13,6 +15,7 @@ Page {
         id: podView
         anchors.fill: parent
         clip: true
+        spacing: Theme.paddingSmall
 
         header: PageHeader {
             title: qsTr("Query results")

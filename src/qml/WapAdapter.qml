@@ -70,10 +70,6 @@ Python {
             __setHandlers();
             addImportPath(Qt.resolvedUrl("../python/"));
             importModule_sync('WapAdapter');
-            setSizeParameters(Screen.width - Theme.horizontalPageMargin*2,
-                              Screen.width,
-                              Screen.width - Theme.horizontalPageMargin*2,
-                              2.5);
             py.ready = true;
         }
     }

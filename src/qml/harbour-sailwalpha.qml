@@ -11,6 +11,13 @@ ApplicationWindow
     cover: Component { CoverPage { } }
     allowedOrientations: Orientation.All
     _defaultPageOrientations: Orientation.All
+
+    onOrientationChanged: {
+        if (orientation === Orientation.Portrait)
+            console.log("orientation portrait")
+        else
+            console.log("orientation landscape")
+    }
 }
 
 
