@@ -98,12 +98,21 @@ class SubPod(object):
     def __str__(self):
         return "subpod %s:%s:%s:%s;" % (self.title, self.plaintext, self.img, self.mathml)
 
+class PodState(object):
+    
+    def __init__(self, state):
+        self.__state = state
+        
+    def __str__(self):
+        return "pod state %s" % (self.__state)
+
 class Pod(object):
     
     def __init__(self, pod):
         p = wap.Pod(pod)
         self.__title = p.Title()[0]
         self.__subpods = list(map(SubPod, p.Subpods()))
+        self.__states = list(map(PodState, p.PodStates()))
 
     @property
     def title(self):
@@ -114,7 +123,7 @@ class Pod(object):
         return self.__subpods
     
     def __str__(self):
-        return "pod %s:%s" % (self.__title, list(map(str, self.subpods)))
+        return "pod %s:%s:%s" % (self.__title, list(map(str, self.subpods)), list(map(str, self.__states)))
 
 class AssumptionValue(object):
     

@@ -28,16 +28,18 @@ ListItem {
             anchors.right: parent.right;
 
             Item {
-                anchors.left: parent.left;
-                anchors.right: parent.right;
-                height: title.height
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                }
+                height: title.height + extraButton.height
 
                 IconButton {
                     id: expandButton
                     icon.source: "image://theme/icon-m-right"
 
                     rotation: _isVisible ? 90 : 0
-                    Behavior on rotation { NumberAnimation { duration: 300; } }
+                    Behavior on rotation { NumberAnimation { duration: 400; } }
 
                     onClicked: {
                         for (var i=0; i < subpodRepeater.count; i++) {
@@ -49,16 +51,45 @@ ListItem {
 
                 Label {
                     id: title
-                    x: Theme.horizontalPageMargin
+                    anchors {
+                        left: expandButton.right
+                        right: parent.right
+                        rightMargin: Theme.paddingSmall
+                        leftMargin: Theme.paddingMedium
+                    }
                     height: Theme.itemSizeExtraSmall
-                    width: (parent ? parent.width : Screen.width) - x*2
                     verticalAlignment: Text.AlignVCenter
                     horizontalAlignment: Text.AlignRight
                     font.pixelSize: Theme.fontSizeSmall
-                    truncationMode: TruncationMode.Fade
+                    truncationMode: TruncationMode.Fade                    
                     color: Theme.highlightColor
                     text: wap.getTitle(pod);
                 }
+
+                IconButton {
+                    anchors {
+                        left: parent.left
+                        top: expandButton.bottom
+                        rightMargin: Theme.paddingSmall
+                        leftMargin: Theme.paddingSmall
+                    }
+
+                    id: extraButton
+                    icon.source: "image://theme/icon-m-add"
+                }
+
+                IconButton {
+                    anchors {
+                        left: extraButton.right
+                        top: expandButton.bottom
+                        rightMargin: Theme.paddingSmall
+                        leftMargin: Theme.paddingSmall
+                    }
+
+                    id: infoButton
+                    icon.source: "image://theme/icon-m-about"
+                }
+
             }
 
             Repeater {

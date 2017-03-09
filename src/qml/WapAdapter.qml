@@ -24,8 +24,8 @@ Python {
         return py.call_sync('WapAdapter.setSizeParameters', [width, maxwidth, plotwidth, magnification]);
     }
 
-    function makeQuery(queryText) {
-        return py.call_sync('WapAdapter.makeSimpleQuery', [queryText]);
+    function makeQuery(queryText, cb) {
+        return py.call('WapAdapter.makeSimpleQuery', [queryText], cb);
     }
 
     function saveQuery(query, path) {

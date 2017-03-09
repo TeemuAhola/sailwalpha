@@ -15,7 +15,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Enter what you want to know about</source>
+        <source>Make question</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
