@@ -14,6 +14,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Source: https://products.wolframalpha.com/docs/Python_Binding_1_1.zip
+# Changes:
+#  - Added support for MathML format
+#  - Added support for query width, max width, plot width and magnification
+
 '''A library that provides a python interface to the Wolfram|Alpha API'''
 
 __author__ = 'derik66@gmail.com'
