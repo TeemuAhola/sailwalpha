@@ -8,7 +8,7 @@ import wap
 import pickle
 
 SERVER = 'http://api.wolframalpha.com/v2/query.jsp'
-APP_ID = 'TR9KLJ-J7L473XLGL'
+APP_ID = ''  # Need APP ID
 
 try:
     import pyotherside
