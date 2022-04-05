@@ -5,7 +5,7 @@ Page {
     id: page
 
     function _queryCompletedCb(queryResult) {
-        wap.saveQuery(queryResult, "/tmp/query.bin")
+        wap.saveQuery(queryResult, "/tmp/sailwalpha_query.bin")
         busy.running = false;
         pageStack.push(Qt.resolvedUrl("QueryResultPage.qml"), {'query': queryResult})
     }
@@ -23,7 +23,7 @@ Page {
             MenuItem {
                 text: "Load query"
                 onClicked: {
-                    var query = wap.loadQuery("/tmp/query.bin");
+                    var query = wap.loadQuery("/tmp/sailwalpha_query.bin");
                     pageStack.push(Qt.resolvedUrl("QueryResultPage.qml"), {'query': query})
                 }
             }
